@@ -1,0 +1,82 @@
+*{
+    font-family: Roboto, sans-serif;
+    box-sizing: border-box;
+}
+
+header {
+	background-color: #1E404E;
+    color:#FDFEFE;
+    min-height: 70px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+header>nav>button>span{
+    color: #FDFEFE;
+    font-size: 25px;
+}
+
+header .navbar ul li a{
+    font-weight: 400;
+    font-size: 13px;
+    font-family: Roboto;
+    line-height: 14px;
+    letter-spacing: 2px;
+    color: #FDFEFE;
+    text-transform: uppercase;
+}
+
+header .navbar ul li a:hover{
+    color:#10B8A2;
+}
+
+header .navbar-brand{
+    color: #FDFEFE;
+}
+
+#login {
+    height: 100vh;
+    background-color: #F8F8F8;
+}
+#login #form{
+    background-color: white;
+    margin: auto;
+    margin-top: 8%;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    min-height: 55vh;
+    padding: 30px;
+    padding-top: 50px;
+    border-radius: 4px;
+}
+
+#login #form label{
+    font-weight: 600;
+    color: #003E4C;
+}
+
+#login #form input[type="submit"]{
+    background-color: #10B8A2;
+    border: 1px solid #10B8A2;
+    color: white;
+}
+
+#login #form input[type="submit"]:hover, #login #form input[type="submit"]:focus{
+	background-color: #17A589;
+    border: 1px solid #17A589;
+}
+
+#login #form a{
+    font-size: 13px;
+    display: block;
+    margin: auto;
+    color: #003E4C;
+    font-family: Roboto,sans-serif;
+    font-weight: 500;
+}
+
+.alert {
+	display:block;
+	list-style-type: none;
+}

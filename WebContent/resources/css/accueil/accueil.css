@@ -1,0 +1,366 @@
+*{
+    font-family: Roboto, sans-serif;
+    box-sizing: border-box;
+}
+
+.fadeIn{
+    opacity:0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    color:#FDFEFE;
+    z-index: 1000;
+    min-height: 70px;
+    overflow: hidden;
+    background-color: #1E404E;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+/*header.scroll {
+    min-height: 70px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    transition: 0.3s;
+    opacity: 0.9;
+}*/
+
+header>nav>button>span{
+    color: #FDFEFE;
+    font-size: 25px;
+}
+
+header .navbar ul li a{
+    font-weight: 400;
+    font-size: 13px;
+    font-family: Roboto;
+    line-height: 14px;
+    letter-spacing: 2px;
+    color: #FDFEFE;
+    text-transform: uppercase;
+}
+
+header .navbar ul li a:hover{
+    color:#10B8A2;
+}
+
+header .navbar-brand{
+    color: #FDFEFE;
+}
+
+#bg_img h1 {
+    font-family: "Pacifico",sans-serif;
+    font-size: 70px;
+}
+
+#bg_img .w {
+    margin: 0 auto;
+    height:100vh;
+    overflow: hidden;
+    background: rgba(66, 66, 66, 0.5) url("http://unsplash.imgix.net/reserve/de9uL9L7RSmzV4SAoAO5_Lauren%20and%20Winona%20Under%20a%20pass-1.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400") no-repeat fixed;
+    background-position: 50% 100%;
+    background-size: cover;
+    z-index: 5;
+}
+
+#bg_img .i {
+    width: 30px;
+    height: 30px;
+    float: left;
+    position: relative;
+    z-index: 4;
+    padding: 2px;
+    transition: all 2.5s linear;
+    background: rgba(66, 66, 66, 0.5) url("http://unsplash.imgix.net/reserve/de9uL9L7RSmzV4SAoAO5_Lauren%20and%20Winona%20Under%20a%20pass-1.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400") no-repeat fixed;
+    background-size: cover;
+    background-position: 50% 100%;
+    border-radius: 0%;
+}
+#bg_img .i:hover {
+    transition: all 0s linear;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    border-radius: 100%;
+    -webkit-transform: rotate(0deg) scale(2);
+    transform: rotate(0deg) scale(2);
+}
+
+#bg_img .h {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    top: 150px;
+    color: beige;
+    text-shadow: 0 5px 17px rgba(87, 87, 80, 0.85);
+}
+
+#help{
+    height: auto;
+    padding-top: 60px;
+    background-color: rgba(248, 249, 249, 0.4);
+    padding-bottom: 60px;
+}
+
+#help>#content>h1{
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 49px;
+    color: #222f2d;
+    text-transform: uppercase;
+}
+
+#help>#content>p{
+    font-family: Roboto,sans-serif;
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: 400;
+    color: #003E4C;
+    text-align: justify;
+}
+
+#help>#img>img{
+    height: 400px;
+}
+
+#testimonial>div{
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding:0;
+    margin:0;
+    height:450px;
+    width:100%;
+    overflow: hidden;
+}
+#testimonial>div>p{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    margin:0;
+    padding: 120px 20px 0 20px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 38px;
+    font-style: italic;
+    z-index: 100;
+    color: white;
+    visibility: hidden;
+}
+
+#testimonial>div>p>i{
+    position: relative;
+    top: -10px;
+    font-size: 15px;
+}
+
+#testimonial div:nth-child(1){
+    background-image: url('../../images/settings/counselor1.jpg');
+}
+
+#testimonial div:nth-child(2){
+    background-image: url('../../images/settings/counselor2.jpg');
+}
+
+#testimonial div:nth-child(3){
+    background-image: url('../../images/settings/counselor3.jpg');
+}
+
+#testimonial>div:hover p{
+    visibility: visible;
+}
+
+#testimonial div:nth-child(1):hover p{
+    background-color: #1B2631;
+    opacity: 0.9;
+}
+
+#testimonial div:nth-child(2):hover p{
+    background-color: #1C211E;
+    opacity: 0.9;
+}
+
+#testimonial div:nth-child(3):hover p{
+    background-color: #1C041C;
+    opacity: 0.9;
+}
+
+#conselors{
+    height: auto;
+    padding:70px;
+    padding-top: 0;
+}
+
+#conselors>#conselor{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#conselors>#conselor>h1{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 49px;
+    color: #222f2d;
+}
+#conselors>#conselor>span{
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    color: #003E4C;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+#conselors>.content{
+    height: 400px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#conselors>.content>.top{
+    height: 80%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#conselors>.content>.bottom{
+    height: 20%;
+    background-color : #148F77;
+    text-align: center;
+    padding-top: 17px;
+}
+
+#conselors>.content>.bottom>h3{
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#conselors>.content>.bottom>h5{
+    color: white;
+    font-size: 13px;
+}
+
+#conselors>.content:nth-child(2)>.top{
+    background-image:url('https://images.unsplash.com/photo-1500080209535-717dd4ebaa6b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ddee81e2e574e8190b07139ddb0f1938&auto=format&fit=crop&w=687&q=80');
+}
+
+#conselors>.content:nth-child(3)>.top{
+    background-image:url('https://images.unsplash.com/photo-1495147334217-fcb3445babd5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=35fc38ccdb26717006d7b48f79a2bb83&auto=format&fit=crop&w=500&q=60');
+}
+
+#conselors>.content:nth-child(4)>.top{
+    background-image:url('https://images.unsplash.com/photo-1506085452766-c330853bea50?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c90ef12b4dc22a4a4c277dd056dd0b7e&auto=format&fit=crop&w=1050&q=80');
+}
+
+#online_therapy{
+	margin: 0;
+}
+#online_therapy .carousel-inner>.carousel-item{
+    height: 55vh;
+}
+#online_therapy .carousel-inner>.carousel-item .img-carousel{
+    background-image: url('../../images/settings/carousel.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 55vh;
+    background-attachment: fixed;
+}
+#online_therapy .carousel-inner>.carousel-item>.carousel-caption{
+    margin: 5%;
+}
+#online_therapy .carousel-inner>.carousel-item>.carousel-caption>p{
+    font-size: 14px;
+    padding:20px;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    margin: 6px; 
+}
+
+#work{
+    height: auto;
+    min-height: 60vh;
+    padding-top: 90px;
+    background-color: rgba(248, 249, 249, 0.4);
+    padding-bottom: 60px;
+}
+
+#work>#content>h1{
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 49px;
+    color: #222f2d;
+    text-transform: uppercase;
+}
+
+#work>#content>p{
+    font-family: Roboto,sans-serif;
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: 400;
+    color: #003E4C;
+    text-align: justify;
+}
+
+#work>#img>img{
+    height: 300px;
+}
+
+footer {
+	background-color: #0B1216;
+	overflow: hidden;
+	height: auto;
+	padding: 60px;
+	color:#9AA8A8;
+}
+footer #canvas{
+	position: relative;
+	right: 170px;
+	bottom: 60px;
+}
+footer>.row>div>h4{
+	font-family: Roboto,sans-serif;
+	font-size: 18px;
+	color: white;
+	margin-bottom: 20px;
+}
+footer>.row>div>p, footer>.row>div>span{
+	font-family: Roboto,sans-serif;
+	text-align: justify;
+	font-size: 14px;
+}
+footer>.row>div>#footer-social{
+	display: flex;
+}
+footer>.row>div>#footer-social>div{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	margin-right: 10px;
+	margin-top: 10px;
+	border: 1px solid #9AA8A8;
+	cursor: pointer;
+}
+footer>.row>div>#footer-social>div>a>i{
+	color:#9AA8A8;
+	position: relative;
+	left: 12px;
+	top: 6px;
+}
+

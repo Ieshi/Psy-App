@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Calender of week</title>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+       
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="../resources/css/psychologist/calender_of_week.css" />
+
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-2" id="navigation">
+                    <div class="row">
+                        <div class="col-md-12" id="profil">
+                            <h:graphicImage library="images" name="users/#{updateProfilePsychologue.psychologue.photo}" id="photo" />
+                            <div id="nom"><h:outputText value="#{(updateProfilePsychologue.psychologue.prenom).concat(' ').concat(updateProfilePsychologue.psychologue.nom)}" /></div>
+                        </div>
+                        <h:form>
+                        	<nav class="col-md-12" id="link">
+	                        	<div><i class="fas fa-user-circle"></i><h:commandLink class="btn btn-link" action="profile_psychologist" value="Profile"/></div>
+	                            <div><i class="fas fa-home"></i><h:commandLink class="btn btn-link" action="home" value="Home"/></div>     
+	                            <div><i class="far fa-calendar-alt"></i>&nbsp;<h:commandLink class="btn btn-link active" action="calender" value="Calender of week"/></div>
+	                            <div><i class="fas fa-video"></i><h:commandLink class="btn btn-link" action="video_call_psychologist" value="Video call"/></div>
+	                            <div><i class="fa fa-heartbeat"></i><h:commandLink class="btn btn-link" action="disorders" value="Disorders"/></div>
+	                            <div><i class="fas fa-user-md"></i>&nbsp;<h:commandLink class="btn btn-link" action="psychologist_list" value="Psychologists"/></div>
+	                            <div><i class="fas fa-comments"></i><h:commandLink class="btn btn-link" action="forum" value="Forum discussion" /></div>
+                        	</nav>
+	                        <div class="col-md-12" id="feedback">
+	                            <h4>Feedback</h4>
+	                            <span class="badge badge-light">84,6%</span>
+	                        </div>
+	                        <div class="col-md-12" id="session">
+	                            <h4>Cumulative sessions</h4>
+	                            <span class="badge badge-light">245</span>
+	                        </div>
+	                        <div class="col-md-12" id="solde">
+	                            <h4>Balance</h4>
+	                            <span class="badge badge-light">27000 €</span>
+	                        </div>
+	                        <div class="col-md-12" id="logout">
+	                            <i class="fas fa-sign-out-alt"></i><h:commandLink class="btn btn-link" action="#{loginManager.doLogout}" value="Logout"/>
+	                        </div>
+                    	</h:form>
+                    </div>
+                </div>
+                
+                <div class="col-md-5" id="section1">
+                	<div class="row">
+                		<h:form id="calender" class="col-md-12">
+                			<div class="row">
+		                        <div class="col">
+							        <p:calendar value="#{creneauManager.date}" mindate="#{creneauManager.lundi}" maxdate="#{creneauManager.vendredi}" mode="inline" />
+							   	</div>
+						   		<div class="col">
+							        <p:calendar value="#{creneauManager.heureDebut}" pattern="HH:mm" timeOnly="true" mode="inline" minHour="8" maxHour="20" stepHour="3" maxMinute="0" />
+								</div>
+							</div><br/><br/>
+							
+						    <h:commandButton value="Confirmer l'indisponibilité de cette séance" action="#{creneauManager.annulerSeance}" class="btn btn-primary">
+						    	<f:ajax execute="@form" render="@form calender_week" />
+						    </h:commandButton><br/><br/>
+						    
+						    <h:messages class="alert alert-success" globalOnly="true" />
+                		</h:form>
+                	</div>
+                	
+                	<br/><br/><br/><br/>
+                	<div class="row alert alert-info">
+                		<ul>
+                			<li>Les rendez-vous seront programmés du lundi au vendredi.</li>
+                			<li>Durant les week end vous allez pouvoir définir une liste des séances qui se dérouleront cette semaine.</li>
+                			<li>La mise à jour de la disponibilité des séances est autorisé uniquement pendant le week end.</li>
+                			<li>Vous n'aurez pas le droit d'annuler une séance durant les jours ouvrables.</li>
+                		</ul>
+                	</div>
+                </div>
+				
+				<div class="col-md-5"  id="section2">
+					<h:panelGroup id="calender_week" class="row">
+						<table class="table">
+						  <caption>Calender of week</caption>
+						  <thead>
+						    <tr>
+						      <th>#</th>
+						      <th>8-10h</th>
+						      <th>11-13h</th>
+						      <th>14-16h</th>
+						      <th>17-19h</th>
+						      <th>20-22h</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<ui:repeat var="creneau" value="#{creneauManager.creneaux}">
+						  		<tr>
+						  			<th><h:outputText value="#{creneauManager.formatter.format(creneau.dateCreneau)}" /></th>
+						  			
+						  			<h:panelGroup rendered="#{creneau.s1}">
+						  				<td><i class="fas fa-check-circle"></i></td>
+						  			</h:panelGroup>
+						  			<h:panelGroup rendered="#{creneau.s1 == false}">
+						  				<td><i class="fas fa-times-circle"></i></td>
+						  			</h:panelGroup>
+						  			
+						  			<h:panelGroup rendered="#{creneau.s2}">
+						  				<td><i class="fas fa-check-circle"></i></td>
+						  			</h:panelGroup>
+						  			<h:panelGroup rendered="#{creneau.s2 == false}">
+						  				<td><i class="fas fa-times-circle"></i></td>
+						  			</h:panelGroup>
+						  			
+						  			<h:panelGroup rendered="#{creneau.s3}">
+						  				<td><i class="fas fa-check-circle"></i></td>
+						  			</h:panelGroup>
+						  			<h:panelGroup rendered="#{creneau.s3 == false}">
+						  				<td><i class="fas fa-times-circle"></i></td>
+						  			</h:panelGroup>
+						  			
+						  			<h:panelGroup rendered="#{creneau.s4}">
+						  				<td><i class="fas fa-check-circle"></i></td>
+						  			</h:panelGroup>
+						  			<h:panelGroup rendered="#{creneau.s4 == false}">
+						  				<td><i class="fas fa-times-circle"></i></td>
+						  			</h:panelGroup>
+						  			
+						  			<h:panelGroup rendered="#{creneau.s5}">
+						  				<td><i class="fas fa-check-circle"></i></td>
+						  			</h:panelGroup>
+						  			<h:panelGroup rendered="#{creneau.s5 == false}">
+						  				<td><i class="fas fa-times-circle"></i></td>
+						  			</h:panelGroup>
+						  		</tr>
+						  	</ui:repeat>
+						  </tbody>
+						</table>
+					</h:panelGroup>
+					
+					<div class="row">
+						<table class="table">
+						  <caption>Session of week</caption>
+						  <thead>
+						    <tr>
+						      <th>#</th>
+						      <th>8-10h</th>
+						      <th>11-13h</th>
+						      <th>14-16h</th>
+						      <th>17-19h</th>
+						      <th>20-22h</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <th>Lundi</th><td></td><td></td><td></td><td></td><td></td>
+						    </tr>
+						    <tr>
+						      <th>Mardi</th><td></td><td></td><td></td><td></td><td></td>
+						    </tr>
+						    <tr>
+						      <th>Mercredi</th><td></td><td></td><td></td><td></td><td></td>
+						    </tr>
+						    <tr>
+						      <th>Jeudi</th><td></td><td></td><td></td><td></td><td></td>
+						    </tr>
+						    <tr>
+						      <th>Vendredi</th><td></td><td></td><td></td><td></td><td></td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+					
+					<h:panelGroup id="generate_session">
+						<h:panelGroup rendered="#{creneauManager.creneaux.size() == 0}">
+							<div class="row alert alert-warning">
+								<h:form>
+									<h:commandButton value="Cliquez-ici" action="#{creneauManager.genererSeances}" class="btn btn-link">pour générer la liste de séance de cette semaine.
+								    	<f:ajax execute="@form" render="@form calender_week generate_session" />
+								    </h:commandButton><br/>
+								</h:form>
+							</div>
+						</h:panelGroup>
+					</h:panelGroup>
+				</div>
+           </div>
+       </div>
+   </h:body>
+</html>

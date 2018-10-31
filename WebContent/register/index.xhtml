@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Register</title>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link href="../resources/css/register/index.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <div id="register">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" height="220">
+                <polygon fill="#003E4C" points="0,0 100,0 100,60 50,100 0,60">tititi</polygon>      
+            </svg> 
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12" id="header">
+                        <h3>Choose Your Authentication Mode</h3><br/><br/>
+                        <div><i class="fas fa-chevron-circle-down"></i></div>
+                    </div>
+                    <div class="col-md-4 offset-md-2 user">                            
+                        <i class="fas fa-user-md"></i>
+                        <h3 class="tm-color-primary title">Psychologist</h3>
+                        <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato instructam mari committa de more elogio revocari</p>
+                        <h:form><h:commandLink class="text-uppercase link" action="register_psychologist" value="Register"/></h:form>
+                    </div>
+                    <div class="col-md-4 user">                            
+                        <i class="fas fa-users"></i>
+                        <h3 class="tm-color-primary title">Patient</h3>
+                        <p>Cyprum itidem insulam procul a discretam verae amicitiae difficillime et portuosam inter municipia crebra urbes duae faciunt</p>
+                        <h:form><h:commandLink class="text-uppercase link" action="register_patient" value="Register"/></h:form>   
+                    </div>
+                </div>        
+            </div>
+        </div>
+    </h:body>
+</html>
+

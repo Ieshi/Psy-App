@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+
+	<navigation-rule>
+  		<from-view-id>/*</from-view-id>
+  		
+	    <navigation-case> 
+	      <from-outcome>home</from-outcome> 
+	      <to-view-id>/index.xhtml</to-view-id>
+	      <redirect />
+	    </navigation-case>
+	    
+	     <navigation-case> 
+	       <from-outcome>forum</from-outcome> 
+	       <to-view-id>/forum.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>disorders</from-outcome> 
+	       <to-view-id>/disorders.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>register</from-outcome> 
+	       <to-view-id>/register/index.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>login</from-outcome> 
+	       <to-view-id>/login.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>profile_patient</from-outcome> 
+	       <to-view-id>/patient/profile.xhtml</to-view-id>
+	       <redirect /> 
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>profile_psychologist</from-outcome> 
+	       <to-view-id>/psychologist/profile.xhtml</to-view-id>
+	       <redirect /> 
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>register_patient</from-outcome> 
+	       <to-view-id>/register/patient.xhtml</to-view-id>
+	       <redirect /> 
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>register_psychologist</from-outcome> 
+	       <to-view-id>/register/psychologist.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>appointment</from-outcome> 
+	       <to-view-id>/patient/make_appointment.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>medical_record</from-outcome> 
+	       <to-view-id>/patient/medical_record.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>video_call_patient</from-outcome> 
+	       <to-view-id>/patient/video_call.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>video_call_psychologist</from-outcome> 
+	       <to-view-id>/psychologist/video_call.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>calender</from-outcome> 
+	       <to-view-id>/psychologist/calender_of_week.xhtml</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>psychologist_list</from-outcome> 
+	       <to-view-id>/psychologist_list.xhtml?p=1</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+	     <navigation-case> 
+	       <from-outcome>topic</from-outcome> 
+	       <to-view-id>/topic.xhtml?idTopic=1</to-view-id>
+	       <redirect />
+	     </navigation-case>
+	     
+     </navigation-rule>
+</faces-config>

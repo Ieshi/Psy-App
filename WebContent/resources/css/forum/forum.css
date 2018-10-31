@@ -1,0 +1,154 @@
+* {
+    font-family: Roboto, sans-serif;
+    box-sizing: border-box;
+}
+
+.forum{
+    margin-bottom: 30px;
+}
+
+.forum .card-header {
+    background-color: #E0E9F0;
+    color: #021C1C;
+    font-size: 13px;
+}
+
+.forum .card-header th{
+    font-size: 13.5px;
+    padding-top:0;
+}
+
+.forum .card-header th:nth-child(1){
+    width: 45%;
+}
+
+.forum .card-header th:nth-child(2){
+    width: 45%;
+}
+
+.forum .card-header th:nth-child(3){
+    width: 8%;
+}
+
+.forum .card-header th:nth-child(4){
+    width: 2%;
+}
+
+.forum .card-header button[data-toggle="collapse"]{
+    color: inherit;
+    position: relative;
+    top: 8px;
+    font-size: 14px;
+}
+
+.forum .card-body a{
+    font-size: 13px;
+    font-weight: 700;
+    color: #084452;
+}
+
+.forum .card-body a:hover{
+    color: #FF6666;
+}
+
+.forum .card-body .msg{
+    margin-bottom: 10px;
+}
+
+.forum .card-body p{
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #021C1C;
+}
+
+.forum .card-body time{
+    font-size: 11px;
+    color: #8A9697;;
+}
+
+.list_forum .card-header{
+    padding: 16px 15px 0px 18px;
+    display:flex;
+    justify-content: space-between;
+    background-color: #E74C3C;
+    color: white;
+}
+
+.list_forum .forum_name{
+    font-size : 12px;
+    font-weight: 700;
+}
+
+.list_forum button[data-toggle="collapse"]{
+    font-size : 15px;
+    color: inherit;
+    position: relative;
+    bottom: 9px;
+}
+
+.list_forum .sujet{
+    padding: 10px;
+    padding-left: 18px;
+    border-top: 1px solid #dbdbdb;
+}
+
+.list_forum .sujet:hover{
+    background-color: #EEF0F3;
+}
+
+.list_forum .sujet:nth-child(1){
+    border: none;
+}
+
+.list_forum .sujet h2{
+    font-weight: 700;
+    font-size: 12px;
+    color: #1E404E;
+}
+
+.list_forum .sujet h2>a{
+    color: inherit;
+}
+
+.list_forum .sujet h2>a:hover{
+    color: #FF6666;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    color:#FDFEFE;
+    z-index: 1000;
+    min-height: 70px;
+    overflow: hidden;
+    background-color: #1E404E;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+header>nav>button>span{
+    color: #FDFEFE;
+    font-size: 25px;
+}
+
+header .navbar ul li a{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    color: #FDFEFE;
+    text-transform: uppercase;
+}
+
+header .navbar ul li a:hover{
+    color:#10B8A2;
+}
+
+header .navbar-brand{
+    color: #FDFEFE;
+}

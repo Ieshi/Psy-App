@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Register Patient</title>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link href="../resources/css/register/patient.css" rel="stylesheet" type="text/css" />
+        <script src="../resources/javascript/register/upload.js"></script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid register">
+        	<header class="row justify-content-center">
+                <nav class="col-md-5 navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fas fa-align-justify"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="nav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><h:commandLink class="nav-link" action="home" value="home"/></li>
+                                <li class="nav-item"><h:commandLink class="nav-link" action="forum" value="forum"/></li>
+                                <li class="nav-item"><h:commandLink class="nav-link" action="disorders" value="disorders"/></li>
+                            </ul>
+                        </h:form>
+                    </div>
+                    <a class="navbar-brand">LOGO HERE</a>
+                    <div class="collapse navbar-collapse" id="nav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><h:commandLink class="nav-link" action="psychologist_list" value="Psychologists"/></li>
+                                <li class="nav-item">
+	                                <c:if test="#{session.getAttribute( 'patient' ) == null and session.getAttribute( 'psychologue' ) == null}">
+	                                	<li class="nav-item"><h:commandLink class="nav-link" action="register" value="register"/></li>
+	                                </c:if>
+                                </li>
+                                <li class="nav-item">
+                                	<c:choose>
+									    <c:when test="#{session.getAttribute( 'patient' ) == null and session.getAttribute( 'psychologue' ) == null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="login" value="Login"/></li>
+									    </c:when>
+									    <c:when test="#{session.getAttribute( 'patient' ) != null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="profile_patient" value="Profile"/></li>
+									        <li class="nav-item"><h:commandLink class="nav-link" action="#{loginManager.doLogout}" value="Logout"/></li>
+									    </c:when>
+									    <c:when test="#{session.getAttribute( 'psychologue' ) != null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="profile_psychologist" value="Profile"/></li>
+									        <li class="nav-item"><h:commandLink class="nav-link" action="#{loginManager.doLogout}" value="Logout"/></li>
+									    </c:when>
+									</c:choose>
+                                </li>
+                            </ul>
+                        </h:form>
+                    </div>
+                </nav>
+            </header><br/>
+            <div class="container">
+            	<div class="row">
+	                <div class="col-md-4 img"></div>
+	                <h:form enctype="multipart/form-data" class="col-md-7" id="form">
+	                    <div class="row">
+	                        <div class="col">
+	                            <h:outputLabel for="prenom">First name</h:outputLabel>
+	                            <h:inputText id="prenom" value="#{registerPatientManager.patient.prenom}" class="form-control">
+	                                <f:ajax event="blur" render="m_prenom" />
+	                            </h:inputText>
+	                            <h:message id="m_prenom" for="prenom" class="alert alert-danger" />
+	                        </div>
+	                        <div class="col">
+	                            <h:outputLabel for="nom">Last name</h:outputLabel>
+	                            <h:inputText id="nom" value="#{registerPatientManager.patient.nom}" class="form-control">
+	                                <f:ajax event="blur" render="m_nom" />
+	                            </h:inputText>
+	                            <h:message id="m_nom" for="nom" class="alert alert-danger" />
+	                        </div>
+	                    </div><br/>
+                    
+	                    <div class="row">
+	                        <div class="col">
+	                            <h:outputLabel for="mdp">Password</h:outputLabel>
+	                            <h:inputSecret id="mdp" value="#{registerPatientManager.patient.mdp}" class="form-control">
+	                            	<f:validator validatorId="passwordValidator" />
+	                    			<f:attribute name="confirm" value="#{confirmPassword.submittedValue}" />
+	                                <f:ajax event="blur" execute="confirm mdp" render="m_mdp" />
+	                            </h:inputSecret>
+	                            <h:message id="m_mdp" for="mdp" class="alert alert-danger" />
+	                        </div>
+	                        <div class="col">
+	                            <h:outputLabel for="confirm">Confirm Password</h:outputLabel>
+	                            <h:inputSecret id="confirm" binding="#{confirmPassword}" class="form-control">
+	                                <f:ajax event="blur" execute="confirm mdp" render="m_confirm m_mdp" />
+	                            </h:inputSecret>
+	                            <h:message id="m_confirm" for="confirm" class="alert alert-danger" />
+	                        </div>
+	                    </div><br/>
+
+	                    <div class="row">
+	                        <div class="col">
+	                            <h:outputLabel for="email">Email</h:outputLabel>
+	                            <h:inputText id="email" value="#{registerPatientManager.patient.email}" class="form-control">
+	                                <f:passThroughAttribute name="type" value="email"/>
+	                                <f:ajax event="blur" render="m_email" />
+	                                <f:validator binding="#{existEmailValidator}" />
+	                            </h:inputText>
+	                            <h:message id="m_email" for="email" class="alert alert-danger" />
+	                        </div>
+	                        <div class="col">
+	                            <h:outputLabel for="tel">Phone</h:outputLabel>
+	                            <h:inputText id="tel" value="#{registerPatientManager.patient.tel}" class="form-control">
+	                                <f:passThroughAttribute name="type" value="tel"/>
+	                                <f:ajax event="blur" render="m_tel" />
+	                            </h:inputText>
+	                            <h:message id="m_tel" for="tel" class="alert alert-danger" />
+	                        </div>
+	                    </div><br/>
+
+	                    <div class="row">
+	                        <div class="col">
+	                            <h:outputLabel for="dateNaissance">Date of birth</h:outputLabel>
+	                            <h:inputText id="dateNaissance" value="#{registerPatientManager.patient.dateNaissance}" class="form-control">
+	                                <f:passThroughAttribute name="type" value="date"/>
+	                                <f:convertDateTime pattern="yyyy-MM-dd" />
+	                                <f:ajax event="blur" render="m_dateNaissance" />
+	                            </h:inputText>
+	                            <h:message id="m_dateNaissance" for="dateNaissance" class="alert alert-danger" />
+	                        </div>
+	                        <div class="col">
+	                            <h:outputLabel for="profession">Profession</h:outputLabel>
+	                            <h:inputText id="profession" value="#{registerPatientManager.patient.profession}" class="form-control">
+	                                <f:ajax event="blur" render="m_profession" />
+	                            </h:inputText>
+	                            <h:message id="m_profession" for="profession" class="alert alert-danger" />
+	                        </div>
+	                    </div><br/>
+
+	                    <div class="row">
+	                        <div class="col">
+	                            <h:outputLabel for="sexe">Sexe</h:outputLabel>
+	                            <h:selectOneMenu class="form-control" value="#{registerPatientManager.patient.sexe}" id="sexe">
+	                                <f:selectItem itemValue="Male" itemLabel="Male" />
+	                                <f:selectItem itemValue="Female" itemLabel="Female" />
+	                                <f:ajax event="blur" render="m_sexe" />
+	                            </h:selectOneMenu>
+	                            <h:message id="m_sexe" for="sexe" class="alert alert-danger" />
+	                        </div>
+	                        <div class="col">
+	                            <h:outputLabel for="situationFamiliale">Family situation</h:outputLabel>
+	                            <h:selectOneMenu class="form-control" id="situationFamiliale" value="#{registerPatientManager.patient.situationFamiliale}">
+	                                <f:selectItem itemValue="married" itemLabel="married" />
+	                                <f:selectItem itemValue="divorced" itemLabel="divorced" />
+	                                <f:selectItem itemValue="single" itemLabel="single" />
+	                                <f:selectItem itemValue="concubinage" itemLabel="concubinage" />
+	                                <f:ajax event="blur" render="m_situationFamiliale" />
+	                            </h:selectOneMenu>
+	                            <h:message id="m_situationFamiliale" for="situationFamiliale" class="alert alert-danger" />
+	                        </div>
+	                    </div><br/>
+
+	                    <div class="row">
+	                        <div class="col">
+	                            <h:outputLabel for="poids">Weight</h:outputLabel>
+	                            <h:inputText id="poids" value="#{registerPatientManager.patient.poids}" class="form-control">
+	                                <f:ajax event="blur" render="m_poids" />
+	                            </h:inputText>
+	                            <h:message id="m_poids" for="poids" class="alert alert-danger" />
+	                        </div>
+	                        <div class="col">
+	                            <h:outputLabel for="taille">Size</h:outputLabel>
+	                            <h:inputText id="taille" value="#{registerPatientManager.patient.taille}" class="form-control">
+	                                <f:ajax event="blur" render="m_taille" />
+	                            </h:inputText>
+	                            <h:message id="m_taille" for="taille" class="alert alert-danger" />
+	                        </div>
+	                    </div><br/>
+	                    
+	                    <div class="row">
+	                    	<div class="col">
+	                    		<div class="custom-file">
+		                        	<h:inputFile id="photo" value="#{registerPatientManager.image}" class="custom-file-input" required="true" requiredMessage="This field is required" >
+		                        		<f:validator validatorId="pictureValidator" />
+		                        		<f:ajax event="change" render="m_photo" />
+		                        	</h:inputFile>
+		                        	<label class="custom-file-label" for="photo">Choose your profile picture</label>
+		                        </div>
+	                           	<h:message id="m_photo" for="photo" class="alert alert-danger" />
+	                    	</div>
+	                    </div>
+	                    
+	                    <h:commandButton value="Register as new patient" action="#{registerPatientManager.register(registerPatientManager.patient)}" class="btn btn-block btn-primary">
+	                        <f:ajax execute="@form" render="@form" />
+	                    </h:commandButton><br/>
+	                    
+                    	<h:messages class="alert alert-success" globalOnly="true" />
+                	</h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,126 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    color: #003E4C;
+}
+
+.container-fluid{
+    height: auto;
+    background-color: #F2F4F8;
+}
+
+#navigation{
+    height:100vh;
+    border-right: 1px solid #E2E6ED;
+}
+
+#navigation #profil{
+    min-height: 80px;
+    border-bottom: 1px solid #E2E6ED;
+    display: flex;
+    justify-content: space-around;
+}
+
+#navigation #profil>#photo{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid #003E4C;
+    margin-top: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#navigation #profil>#nom{
+    margin-top: 25px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+#feedback,#session,#solde{
+    padding: 10px 30px;
+    min-height: 70px;
+    border-bottom: 1px solid #E2E6ED;
+}
+
+#feedback h4, #session h4, #solde h4{
+    font-size:14px;
+    font-weight: 600;
+}
+
+#feedback span, #session span, #solde span{
+    display: block;
+    margin: auto;
+    color:#16A085;
+}
+
+#navigation nav{
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #E2E6ED;
+}
+
+#navigation nav div>a, #navigation #logout>a{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 19px;
+    margin-left: 10px;
+    color: #003E4C;
+}
+
+#navigation nav div>a.active{
+    color: #2471A3;
+}
+
+#navigation nav div>a:hover, #navigation #logout>a:hover{
+    color: #0069D9;
+}
+
+#navigation #logout{
+    border-top: 1px solid #E2E6ED;
+    position: absolute;
+    padding-top: 5px;
+    height: 50px;
+    bottom: 0;
+}
+
+#parametre{
+    height:100vh;
+    border-right: 1px solid #E2E6ED;
+}
+
+#parametre #chart{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E2E6ED;
+}
+
+#parametre form{
+    padding-top: 20px;
+}
+
+#parametre form input[type="submit"]{
+    background-color: #1F618D;
+    border: 1px solid #1F618D;
+}
+
+#rdv{
+    height:100vh;
+    font-size: 14px;
+    overflow: hidden;
+    margin:auto;
+    text-align: center;
+}
+
+#rdv table caption{
+    caption-side: top;
+}
+
+.alert {
+	display:block;
+}
+
+.alert-success{
+	list-style-type: none;
+}

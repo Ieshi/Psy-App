@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+    <h:head>
+    	<title>Disorders</title>
+    	<link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+	    
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+	    
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	    <link href="./resources/css/disorder/disorders.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <header class="row justify-content-center">
+                <nav class="col-md-5 navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fas fa-align-justify"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="nav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><h:commandLink class="nav-link" action="home" value="home"/></li>
+                                <li class="nav-item"><h:commandLink class="nav-link" action="forum" value="forum"/></li>
+                                <li class="nav-item"><h:commandLink class="nav-link" action="disorders" value="disorders"/></li>
+                            </ul>
+                        </h:form>
+                    </div>
+                    <a class="navbar-brand">LOGO HERE</a>
+                    <div class="collapse navbar-collapse" id="nav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><h:commandLink class="nav-link" action="psychologist_list" value="Psychologists"/></li>
+                                <li class="nav-item">
+	                                <c:if test="#{session.getAttribute( 'patient' ) == null and session.getAttribute( 'psychologue' ) == null}">
+	                                	<li class="nav-item"><h:commandLink class="nav-link" action="register" value="register"/></li>
+	                                </c:if>
+                                </li>
+                                <li class="nav-item">
+                                	<c:choose>
+									    <c:when test="#{session.getAttribute( 'patient' ) == null and session.getAttribute( 'psychologue' ) == null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="login" value="Login"/></li>
+									    </c:when>
+									    <c:when test="#{session.getAttribute( 'patient' ) != null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="profile_patient" value="Profile"/></li>
+									        <li class="nav-item"><h:commandLink class="nav-link" action="#{loginManager.doLogout}" value="Logout"/></li>
+									    </c:when>
+									    <c:when test="#{session.getAttribute( 'psychologue' ) != null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="profile_psychologist" value="Profile"/></li>
+									        <li class="nav-item"><h:commandLink class="nav-link" action="#{loginManager.doLogout}" value="Logout"/></li>
+									    </c:when>
+									</c:choose>
+                                </li>
+                            </ul>
+                        </h:form>
+                    </div>
+                </nav>
+            </header>
+        </div><br/><br/><br/>
+        <div class="container">
+	        <div class="row search flex-row-reverse">
+	        	<h:form class="col-md-5">  
+		            <div class="input-group mb-3">
+		                <h:inputText id="search-text" class="form-control" value="#{disorderManager.searchText}">
+		                	<f:passThroughAttribute name="placeholder" value="Search disorder..." />
+		                	<f:ajax event="blur" />
+		                </h:inputText>
+		                <span class="input-group-append">
+		                    <h:commandButton type="button" class="btn" value="Search">
+		                    	<f:ajax event="click" listener="#{disorderManager.search()}" render="notExist exist" />
+		                    </h:commandButton>
+		                </span>
+		            </div>
+		        </h:form>
+	        </div>
+	        <div class="row justify-content-md-center">
+	        	<h:panelGroup id="notExist">
+		        	<h:panelGroup rendered="#{disorderManager.searchMaladies.isEmpty()}">
+			            <table class="table table-striped" id="disorders">
+			                <thead>
+			                    <tr>
+			                        <th>Disorder</th>
+			                        <th>Trouble</th>
+			                        <th>Definition</th>
+			                        <th>Comment</th>
+			                        <th class="filter">
+			                            <button class="btn btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-th"></i></button>
+			                            <div class="dropdown-menu">
+			                                <a class="dropdown-item" href="#">Filter by Name</a>
+			                                <a class="dropdown-item" href="#">Filter by Trouble</a>
+			                            </div>
+			                        </th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                	<ui:repeat var="maladie" value="#{disorderManager.getAllMaladie()}">
+				                    <tr>
+				                        <td>
+				                        	<h:form>
+				                        		<i class="fas fa-caret-right"></i> 
+		                                        <h:commandLink action = "#{forumManager.displayTopic}" value="#{maladie.nomMaladie}" class="name">
+	                        						<f:param name="idTopic" value="#{maladie.idMaladie}" />
+	                        					</h:commandLink>
+	                        				</h:form>
+				                        </td>
+				                        <td><h:outputText value="#{maladie.trouble.nomTrouble}" /></td>
+				                        <td><h:outputText espace="false" value="#{maladie.definition.substring(0,100)}..." /></td>
+				                        <td><h:outputText espace="false" value="#{maladie.commentaire.substring(0,100)}..." /></td>
+				                        <td></td>
+				                    </tr>
+			                    </ui:repeat>
+			                </tbody>
+			            </table>
+		            </h:panelGroup>
+		        </h:panelGroup>
+		        <h:panelGroup id="exist">
+		            <h:panelGroup rendered="#{disorderManager.searchMaladies.isEmpty() == false}">
+	  					<table class="table table-striped" id="disorders">
+			                <thead>
+			                    <tr>
+			                        <th>Disorder</th>
+			                        <th>Trouble</th>
+			                        <th>Definition</th>
+			                        <th>Comment</th>
+			                        <th class="filter">
+			                            <button class="btn btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-th"></i></button>
+			                            <div class="dropdown-menu">
+			                                <a class="dropdown-item" href="#">Filter by Name</a>
+			                                <a class="dropdown-item" href="#">Filter by Trouble</a>
+			                            </div>
+			                        </th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                	<ui:repeat var="maladie" value="#{disorderManager.searchMaladies}">
+				                    <tr>
+				                        <td>
+				                        	<h:form>
+				                        		<i class="fas fa-caret-right"></i> <h:commandLink action="login" class="name" value="#{maladie.nomMaladie}" />
+				                        	</h:form>
+				                        </td>
+				                        <td><h:outputText value="#{maladie.trouble.nomTrouble}" /></td>
+				                        <td><h:outputText value="#{maladie.definition.substring(0,100)}" espace="false" /></td>
+				                        <td><h:outputText value="#{maladie.commentaire.substring(0,100)}" espace="false" /></td>
+				                        <td></td>
+				                    </tr>
+			                    </ui:repeat>
+			                </tbody>
+			            </table>
+	               </h:panelGroup>
+	            </h:panelGroup>
+	        </div>
+	    </div>
+    </h:body>
+</html>

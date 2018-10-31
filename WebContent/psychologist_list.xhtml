@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Psychologists</title>
+	    <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+	    
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+	    
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	    <link href="./resources/css/psychologist/psychologist_list.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+	    <div class="container-fluid">
+	    	<header class="row justify-content-center">
+                <nav class="col-md-5 navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fas fa-align-justify"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="nav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><h:commandLink class="nav-link" action="home" value="home"/></li>
+                                <li class="nav-item"><h:commandLink class="nav-link" action="forum" value="forum"/></li>
+                                <li class="nav-item"><h:commandLink class="nav-link" action="disorders" value="disorders"/></li>
+                            </ul>
+                        </h:form>
+                    </div>
+                    <a class="navbar-brand">LOGO HERE</a>
+                    <div class="collapse navbar-collapse" id="nav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><h:commandLink class="nav-link" action="psychologist_list" value="Psychologists"/></li>
+                                <li class="nav-item">
+	                                <c:if test="#{session.getAttribute( 'patient' ) == null and session.getAttribute( 'psychologue' ) == null}">
+	                                	<li class="nav-item"><h:commandLink class="nav-link" action="register" value="register"/></li>
+	                                </c:if>
+                                </li>
+                                <li class="nav-item">
+                                	<c:choose>
+									    <c:when test="#{session.getAttribute( 'patient' ) == null and session.getAttribute( 'psychologue' ) == null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="login" value="Login"/></li>
+									    </c:when>
+									    <c:when test="#{session.getAttribute( 'patient' ) != null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="profile_patient" value="Profile"/></li>
+									        <li class="nav-item"><h:commandLink class="nav-link" action="#{loginManager.doLogout}" value="Logout"/></li>
+									    </c:when>
+									    <c:when test="#{session.getAttribute( 'psychologue' ) != null}">
+									        <li class="nav-item"><h:commandLink class="nav-link" action="profile_psychologist" value="Profile"/></li>
+									        <li class="nav-item"><h:commandLink class="nav-link" action="#{loginManager.doLogout}" value="Logout"/></li>
+									    </c:when>
+									</c:choose>
+                                </li>
+                            </ul>
+                        </h:form>
+                    </div>
+                </nav>
+            </header>
+	        <br/><br/><br/><br/><br/><br/>
+	        <div class="row justify-content-md-center">
+	            <ui:repeat var="psychologist" value="#{psychologists.pagination()}">
+		            <article class="col-lg-3 col-md-5 col-sm-8 card">
+		                <div class="card__img">
+		                    <h:graphicImage library="images" name="users/#{psychologist.photo}" />
+		                </div>
+		                <div class="card__body">
+		                    <div class="card__feedback">Feedback : #{psychologists.feedback(psychologist.notePositive,psychologist.noteNegative)}</div>
+		                    <h1 class="card__nom">#{psychologist.nom} #{psychologist.prenom}</h1>
+		                    <div class="card__specialite">#{psychologist.specialite}</div>
+		                    <div class="card__description">#{psychologist.descriptif}</div>
+		                </div>
+		                <div class="card__contact">
+		                    <span class="icon"><i class="far fa-envelope-open"></i></span>&nbsp;&nbsp; #{psychologist.email}
+		                    <span class="icon"><i class="fas fa-phone-volume"></i></span>&nbsp;&nbsp; #{psychologist.tel}
+		                </div>
+		            </article>
+		         </ui:repeat>
+	             <div class="col-md-12">
+	                <br/><br/>
+	                <h:form>
+	                	<nav>
+		                    <ul class="pagination justify-content-center">
+		                        <ui:repeat var="page" value="#{psychologists.pages}">
+		                        	<h:panelGroup rendered="#{page == psychologists.currentPage}">
+		                        		<li class="page-item activ">
+		                        			<h:commandLink class="page-link" action="#{psychologists.showPage()}" value="#{page}">
+		                        				<f:param name = "pageId" value = "#{page}" />
+		                        			</h:commandLink>
+		                        		</li>
+		                        	</h:panelGroup>
+									<h:panelGroup rendered="#{page != psychologists.currentPage}">
+		                        		<li class="page-item">
+		                        			<h:commandLink class="page-link" action="#{psychologists.showPage()}" value="#{page}">
+		                        				<f:param name = "pageId" value = "#{page}" />
+		                        			</h:commandLink>
+		                        		</li>
+		                        	</h:panelGroup>
+		                       	</ui:repeat>
+		                    </ul>
+                	 	</nav>
+                	 </h:form>
+	            </div>
+	        </div>
+	    </div>
+    </h:body>
+</html>

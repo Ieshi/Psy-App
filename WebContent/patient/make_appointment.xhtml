@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Patient</title>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="../resources/css/patient/make_appointment.css" />
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-2" id="navigation">
+                    <div class="row">
+                        <div class="col-md-12" id="profil">
+                            <h:graphicImage library="images" name="users/#{updateProfilePatient.patient.photo}" id="photo" />
+                            <div id="nom"><h:outputText value="#{(updateProfilePatient.patient.prenom).concat(' ').concat(updateProfilePatient.patient.nom)}" /></div>
+                        </div>
+                        <h:form>
+                        	<nav class="col-md-12" id="link">
+	                        	<div><i class="fas fa-user-circle"></i><h:commandLink class="btn btn-link" action="profile_patient" value="Profile"/></div>
+	                            <div><i class="fas fa-home"></i><h:commandLink class="btn btn-link" action="home" value="Home"/></div>     
+	                            <div><i class="far fa-calendar-alt">&nbsp;</i><h:commandLink class="btn btn-link active" action="appointment" value="Make an appointment"/></div>
+	                            <div><i class="fas fa-notes-medical"></i>&nbsp;<h:commandLink class="btn btn-link" action="medical_record" value="Medical record"/></div>
+	                            <div><i class="fas fa-video"></i><h:commandLink class="btn btn-link" action="video_call_patient" value="Video call"/></div>
+	                            <div><i class="fa fa-heartbeat"></i><h:commandLink class="btn btn-link" action="disorders" value="Disorders"/></div>
+	                            <div><i class="fas fa-user-md"></i>&nbsp;<h:commandLink class="btn btn-link" action="psychologist_list" value="Psychologists"/></div>
+	                            <div><i class="fas fa-comments"></i><h:commandLink class="btn btn-link" action="forum" value="Forum discussion" /></div>
+                        	</nav>
+	                        <div class="col-md-12" id="logout">
+	                            <i class="fas fa-sign-out-alt"></i><h:commandLink class="btn btn-link" action="#{loginManager.doLogout}" value="Logout"/>
+	                        </div>
+	                     </h:form>
+                    </div>
+               </div>
+               
+               <div class="col-md-10">
+               		<div class="row justify-content-md-center form_search">
+               			<h:form class="col-md-7">
+               			
+               				<div class="row">
+		                        <div class="col">
+		                            <h:outputLabel for="nom">Last name</h:outputLabel>
+		                            <h:inputText id="nom" value="#{seanceManager.nom}" class="form-control">
+		                                <f:ajax event="blur" render="m_nom" />
+		                            </h:inputText>
+		                            <h:message id="m_nom" for="nom" class="alert alert-danger" />
+		                        </div>
+		                        
+		                        <div class="col">
+		                            <h:outputLabel for="prenom">First name</h:outputLabel>
+		                            <h:inputText id="prenom" value="#{seanceManager.prenom}" class="form-control">
+		                                <f:ajax event="blur" render="m_prenom" />
+		                            </h:inputText>
+		                            <h:message id="m_prenom" for="prenom" class="alert alert-danger" />
+		                        </div>
+		                        
+		                        <div class="col">
+		                            <h:outputLabel for="seance">Session</h:outputLabel>
+		                            <h:selectOneMenu class="form-control" value="#{seanceManager.seance}" id="seance">
+		                                <f:selectItem itemValue="0" itemLabel="08-10h" />
+		                                <f:selectItem itemValue="1" itemLabel="11h-13h" />
+		                                <f:selectItem itemValue="2" itemLabel="14h-16h" />
+		                                <f:selectItem itemValue="3" itemLabel="17h-19h" />
+		                                <f:selectItem itemValue="4" itemLabel="20h-22h" />
+		                                <f:selectItem itemValue="#{null}" itemLabel="Doesn't matter" />
+		                                <f:ajax event="blur" render="m_seance" />
+		                            </h:selectOneMenu>
+		                            <h:message id="m_seance" for="seance" class="alert alert-danger" />
+		                        </div>
+	                    	</div><br/>
+	                    	
+	                    	<div class="row">
+		                        <div class="col">
+		                            <h:outputLabel for="sexe">Sexe</h:outputLabel>
+		                            <h:selectOneMenu class="form-control" value="#{seanceManager.sexe}" id="sexe">
+		                                <f:selectItem itemValue="Male" itemLabel="Male" />
+		                                <f:selectItem itemValue="Female" itemLabel="Female" />
+		                                <f:selectItem itemValue="#{null}" itemLabel="Doesn't matter" />
+		                                <f:ajax event="blur" render="m_sexe" />
+		                            </h:selectOneMenu>
+		                            <h:message id="m_sexe" for="sexe" class="alert alert-danger" />
+		                        </div>
+		                        
+		                        <div class="col">
+		                            <h:outputLabel for="feedback">Feedback</h:outputLabel>
+		                            <h:selectOneMenu class="form-control" value="#{seanceManager.feedback}" id="feedback">
+		                                <f:selectItem itemValue="50" itemLabel="+50%" />
+		                                <f:selectItem itemValue="80" itemLabel="+80%" />
+		                                <f:selectItem itemValue="#{null}" itemLabel="Doesn't matter" />
+		                                <f:ajax event="blur" render="m_feedback" />
+		                            </h:selectOneMenu>
+		                            <h:message id="m_feedback" for="feedback" class="alert alert-danger" />
+		                        </div>
+		                        
+		                        <div class="col">
+		                            <h:outputLabel for="specialite">Speciality</h:outputLabel>
+		                            <h:selectOneMenu class="form-control" value="#{seanceManager.seance}" id="specialite">
+		                                <f:selectItem itemValue="0" itemLabel="08-10h" />
+		                                <f:selectItem itemValue="1" itemLabel="11h-13h" />
+		                                <f:selectItem itemValue="2" itemLabel="14h-16h" />
+		                                <f:selectItem itemValue="3" itemLabel="17h-19h" />
+		                                <f:selectItem itemValue="4" itemLabel="20h-22h" />
+		                                <f:selectItem itemValue="#{null}" itemLabel="Doesn't matter" />
+		                                <f:ajax event="blur" render="m_specialite" />
+		                            </h:selectOneMenu>
+		                            <h:message id="m_specialite" for="specialite" class="alert alert-danger" />
+		                        </div>
+		                    </div>
+		                    
+                        	<h:commandButton value="Look for your ideal psychologists" action="#{seanceManager.searchPsychologist}" class="btn btn-primary btn-block">
+                       			<f:ajax execute="@form" render="@form list_psycho" />
+                   			</h:commandButton>
+               			</h:form>
+               		</div>
+               		
+               		<div class="row justify-content-md-center">
+						<h:panelGroup id="list_psycho">
+							<h:panelGroup rendered="#{seanceManager.psychologues.size() != 0}">
+		               			<table class="table col-md-12">
+		               				<thead>
+		               					<tr align="center">
+		               						<th>Picture</th>
+		               						<th>Name</th>
+		               						<th>Feedback</th>
+		               						<th>Speciality</th>
+		               						<th>Email</th>
+		               						<th>Tel</th>
+		               						<th>Make an appointment</th>
+		               					</tr>
+		               				</thead>
+		               				<tbody>
+		               					<ui:repeat var="psychologue" value="#{seanceManager.psychologues}">
+			               					<tr>
+			               						<td><h:graphicImage library="images" name="users/#{psychologue.photo}" height="40" width="40" /></td>
+			               						<td>#{psychologue.nom} #{psychologue.prenom}</td>
+			               						<td>#{seanceManager.feedback(psychologue.notePositive,psychologue.noteNegative)}</td>
+			               						<td>#{psychologue.trouble.nomTrouble}</td>
+			               						<td>#{psychologue.email}</td>
+			               						<td>#{psychologue.tel}</td>
+			               						<td align="center">
+			               							<h:form>
+			               								<h:commandButton value="Approve" action="#{seanceManager.make_appointment(psychologue.idUser)}" class="btn btn-link">
+							                       			<f:ajax execute="@form" render="@form" />
+							                   			</h:commandButton>
+			               							</h:form>
+			               						</td>
+			               					</tr>
+			               				</ui:repeat>
+		               				</tbody>
+		               			</table>
+			               	</h:panelGroup>
+		               	</h:panelGroup>
+				    </div>
+				   
+               </div>   
+           </div>  
+        </div>
+    </h:body>
+</html>

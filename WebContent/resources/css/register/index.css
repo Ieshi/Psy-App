@@ -1,0 +1,56 @@
+body {
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	overflow-x: hidden;
+}
+
+#register>svg{
+	position: absolute;
+	width: 100%;
+}
+
+#register #header{
+	color:white;
+	position: relative;
+	top:40px;
+}
+
+#register #header>div>i{
+	color:white;
+	font-size:30px;
+}
+#register .container .user i{
+	color: #148F77;
+	font-size: 6em;
+}
+
+#register .container a{
+	font-weight: 600;
+	color:#003E4C; 
+}
+
+#register .container a:hover, #register .container a:focus {
+	text-decoration: none;
+	outline: none;
+	color: #10B8A2;
+}
+
+#register .container h3{
+	padding-top: 15px;
+}
+
+#register .container p{ 
+	color: #667273; 
+	line-height: 1.5;
+}
+
+#register .container .user{
+	margin-top: 18%;
+	padding: 40px;
+	transition: 1s;
+}
+
+#register .container .user:hover {
+	box-shadow: 0 8px 17px 0 #E5E7E9,0 6px 20px 0 #E5E7E9;
+}

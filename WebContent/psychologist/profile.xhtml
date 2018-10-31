@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Psychologist</title>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="../resources/css/psychologist/profile.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-2" id="navigation">
+                    <div class="row">
+                        <div class="col-md-12" id="profil">
+                            <h:graphicImage library="images" name="users/#{updateProfilePsychologue.psychologue.photo}" id="photo" />
+                            <div id="nom"><h:outputText value="#{(updateProfilePsychologue.psychologue.prenom).concat(' ').concat(updateProfilePsychologue.psychologue.nom)}" /></div>
+                        </div>
+                        <h:form>
+                        	<nav class="col-md-12" id="link">
+	                        	<div><i class="fas fa-user-circle"></i><h:commandLink class="btn btn-link active" action="profile_psychologist" value="Profile"/></div>
+	                            <div><i class="fas fa-home"></i><h:commandLink class="btn btn-link" action="home" value="Home"/></div>     
+	                            <div><i class="far fa-calendar-alt"></i>&nbsp;<h:commandLink class="btn btn-link" action="calender" value="Calender of week"/></div>
+	                            <div><i class="fas fa-video"></i><h:commandLink class="btn btn-link" action="video_call_psychologist" value="Video call"/></div>
+	                            <div><i class="fa fa-heartbeat"></i><h:commandLink class="btn btn-link" action="disorders" value="Disorders"/></div>
+	                            <div><i class="fas fa-user-md"></i>&nbsp;<h:commandLink class="btn btn-link" action="psychologist_list" value="Psychologists"/></div>
+	                            <div><i class="fas fa-comments"></i><h:commandLink class="btn btn-link" action="forum" value="Forum discussion" /></div>
+                        	</nav>
+	                        <div class="col-md-12" id="feedback">
+	                            <h4>Feedback</h4>
+	                            <span class="badge badge-light">84,6%</span>
+	                        </div>
+	                        <div class="col-md-12" id="session">
+	                            <h4>Cumulative sessions</h4>
+	                            <span class="badge badge-light">245</span>
+	                        </div>
+	                        <div class="col-md-12" id="solde">
+	                            <h4>Balance</h4>
+	                            <span class="badge badge-light">27000 €</span>
+	                        </div>
+	                        <div class="col-md-12" id="logout">
+	                            <i class="fas fa-sign-out-alt"></i><h:commandLink class="btn btn-link" action="#{loginManager.doLogout}" value="Logout"/>
+	                        </div>
+                    	</h:form>
+                    </div>
+                </div>
+
+                <aside class="col-md-5" id="parametre">
+
+                    <div class="row" id="chart">
+                        <canvas id="myChart" height="140"></canvas>
+                        <script src="../resources/javascript/psychologist/chart.js"></script>
+                    </div>
+
+                    <div class="row">
+                        <h:form method="post" class="col-md-12">
+                            <legend>Paramètres</legend>
+                            <div class="row">
+		                        <div class="col">
+		                            <h:inputText id="prenom" value="#{updateProfilePsychologue.psychologue.prenom}" class="form-control">
+		                                <f:ajax event="blur" render="m_prenom" />
+		                            </h:inputText>
+		                            <h:message id="m_prenom" for="prenom" class="alert alert-danger" />
+		                        </div>
+		                        <div class="col">
+		                            <h:inputText id="nom" value="#{updateProfilePsychologue.psychologue.nom}" class="form-control">
+		                                <f:ajax event="blur" render="m_nom" />
+		                            </h:inputText>
+		                            <h:message id="m_nom" for="nom" class="alert alert-danger" />
+		                        </div>
+	                    	</div><br/>
+
+                            <div class="row">
+		                        <div class="col">
+		                            <h:inputText id="email" value="#{updateProfilePsychologue.psychologue.email}" class="form-control">
+		                                <f:passThroughAttribute name="type" value="email"/>
+		                                <f:ajax event="blur" render="m_email" />
+		                                <!-- <f:validator binding="#{existEmailValidator}" />  -->
+		                            </h:inputText>
+		                            <h:message id="m_email" for="email" class="alert alert-danger" />
+		                        </div>
+		                        <div class="col">
+		                            <h:inputText id="tel" value="#{updateProfilePsychologue.psychologue.tel}" class="form-control">
+		                                <f:passThroughAttribute name="type" value="tel"/>
+		                                <f:ajax event="blur" render="m_tel" />
+		                            </h:inputText>
+		                            <h:message id="m_tel" for="tel" class="alert alert-danger" />
+		                        </div>
+		                    	</div><br/>
+
+                            <div class="row">
+		                        <div class="col">
+		                            <h:selectOneMenu class="form-control" value="#{updateProfilePsychologue.psychologue.sexe}" id="sexe">
+		                                <f:selectItem itemValue="Male" itemLabel="Male" />
+		                                <f:selectItem itemValue="Female" itemLabel="Female" />
+		                                <f:ajax event="blur" render="m_sexe" />
+		                            </h:selectOneMenu>
+		                            <h:message id="m_sexe" for="sexe" class="alert alert-danger" />
+		                        </div>
+		                        <div class="col">
+		                            <h:selectOneMenu class="form-control" id="specialite" value="#{updateProfilePsychologue.psychologue.trouble.nomTrouble}">
+		                                <f:selectItem itemValue="Speciality 1" itemLabel="Speciality 1" />
+		                                <f:selectItem itemValue="Speciality 2" itemLabel="Speciality 2" />
+		                                <f:ajax event="blur" render="m_specialite" />
+		                            </h:selectOneMenu>
+		                            <h:message id="m_specialite" for="specialite" class="alert alert-danger" />
+		                        </div>
+		                        <div class="col">
+		                            <h:inputText id="dateNaissance" value="#{updateProfilePsychologue.psychologue.dateNaissance}" class="form-control">
+		                                <f:passThroughAttribute name="type" value="date"/>
+		                                <f:convertDateTime pattern="yyyy-MM-dd" />
+		                                <f:ajax event="blur" render="m_dateNaissance" />
+		                            </h:inputText>
+		                            <h:message id="m_dateNaissance" for="dateNaissance" class="alert alert-danger" />
+		                        </div>
+	                    	</div><br/>
+							
+							<div class="row">
+		                        <div class="col">
+		                            <h:inputTextarea id="descriptif" value="#{updateProfilePsychologue.psychologue.descriptif}" rows="4" class="form-control">
+		                                <f:ajax event="blur" render="m_descriptif" />
+		                            </h:inputTextarea>
+		                            <h:message id="m_descriptif" for="descriptif" class="alert alert-danger" />
+		                        </div>
+	                    	</div><br/>
+	                    	
+                            <div class="row">
+                                <div class="col">
+                                    <h:commandButton value="Update profile" action="#{updateProfilePsychologue.update(updateProfilePsychologue.psychologue)}" class="btn btn-block btn-primary">
+			                        	<f:ajax execute="@form" render="@form" />
+			                    	</h:commandButton><br/>
+                                </div>
+                            </div>
+                            
+                            <h:messages class="alert alert-success" globalOnly="true" />
+                        </h:form>
+                    </div>
+                </aside>
+
+
+                <section class="col-md-5" id="rdv">
+                    <table class="col-md-12 table table-hover table-sm">
+                        <caption align="middle">List of appointments</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Psychologist</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Session</th>
+                                <th scrope="col">Remaining time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Ven. 3 Juin</td>
+                                <td>14h</td>
+                                <td>9h</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Mer. 12 Juin</td>
+                                <td>8h</td>
+                                <td>3j 10h</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>Lun. 16 Juin</td>
+                                <td>16h</td>
+                                <td>2d 15h</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </h:body>
+</html>
+

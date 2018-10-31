@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Administration</title>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/settings/logo.png" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Pacifico" rel="stylesheet" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+
+        <link href="./resources/css/admin.css" rel="stylesheet" type="text/css" />
+        
+    </h:head>
+    <h:body>
+    	<h:form class="col-md-6" id="disorder">
+    		<div class="row">
+            	<div class="col">
+                    <h:outputLabel for="nomMaladie">Name</h:outputLabel>
+                    <h:inputText id="nomMaladie" value="#{disorderManager.maladie.nomMaladie}" class="form-control ckeditor">
+                        <f:ajax event="blur" render="m_nomMaladie" />
+                    </h:inputText>
+                    <h:message id="m_nomMaladie" for="nomMaladie" class="alert alert-danger" />
+                </div>
+                 <div class="col">
+                     <h:outputLabel for="trouble">Trouble</h:outputLabel>
+                     <h:selectOneMenu id="trouble" value="#{disorderManager.maladie.trouble}" class="form-control" converter="convertTrouble">
+					  	<f:selectItems value="#{disorderManager.getAllTrouble()}"
+						                 var="trouble"
+						                 itemValue="#{trouble}"
+						                 itemLabel="#{trouble.nomTrouble}"/>
+						<f:ajax event="blur" render="m_trouble" />
+					</h:selectOneMenu>
+					<h:message id="m_trouble" for="trouble" class="alert alert-danger" />
+                 </div>
+             </div><br/>
+             
+            <div class="row">
+                <div class="col">
+                    <h:outputLabel for="definition">Definition</h:outputLabel>
+                    <p:textEditor height="120" id="definition" value="#{disorderManager.maladie.definition}">
+                    	<p:ajax event="blur" render="m_definition" />
+                    </p:textEditor> 
+                    <h:message id="m_definition" for="definition" class="alert alert-danger" />
+                </div>
+                <div class="col">
+                    <h:outputLabel for="commentaire">Comment</h:outputLabel>
+                    <p:textEditor height="120" id="commentaire" value="#{disorderManager.maladie.commentaire}">
+                    	<p:ajax event="blur" render="m_commentaire" />
+                    </p:textEditor>
+                    <h:message id="m_commentaire" for="commentaire" class="alert alert-danger" />
+                </div>
+            </div><br/>
+            
+            <div class="row">
+                <div class="col">
+                    <h:outputLabel for="cognitif">Cognitive</h:outputLabel>
+                    <p:textEditor height="120" id="cognitif" value="#{disorderManager.maladie.cognitif}">
+                    	<p:ajax event="blur" render="m_cognitif" />
+                    </p:textEditor>
+                    <h:message id="m_cognitif" for="cognitif" class="alert alert-danger" />
+                </div>
+                <div class="col">
+                    <h:outputLabel for="affectif">Affective</h:outputLabel>
+                    <p:textEditor height="120" id="affectif" value="#{disorderManager.maladie.affectif}">
+                    	<p:ajax event="blur" render="m_" />
+                    </p:textEditor>
+                    <h:message id="m_affectif" for="affectif" class="alert alert-danger" />
+                </div>
+            </div><br/>
+            
+            
+            <div class="row">
+                <div class="col">
+                    <h:outputLabel for="comportemental">Behavioral</h:outputLabel>
+                    <p:textEditor height="120" id="comportemental" value="#{disorderManager.maladie.comportemental}">
+                    	<p:ajax event="blur" render="m_comportemental" />
+                    </p:textEditor>
+                    <h:message id="m_comportemental" for="comportemental" class="alert alert-danger" />
+                </div>
+                <div class="col">
+                    <h:outputLabel for="sensoriMoteur">Sensorial</h:outputLabel>
+                    <p:textEditor height="120" id="sensoriMoteur" value="#{disorderManager.maladie.sensoriMoteur}">
+                    	<p:ajax event="blur" render="m_sensoriMoteur" />
+                    </p:textEditor>
+                    <h:message id="m_sensoriMoteur" for="sensoriMoteur" class="alert alert-danger" />
+                </div>
+            </div><br/>
+
+            <h:commandButton value="Add new disorder" action="#{disorderManager.add(disorderManager.maladie)}" class="btn btn-block btn-danger">
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton><br/>
+            
+           	<h:messages class="alert alert-success" globalOnly="true" />
+         </h:form>
+    </h:body>
+</html>

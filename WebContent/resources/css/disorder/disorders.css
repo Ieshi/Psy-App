@@ -1,0 +1,124 @@
+* {
+    font-family: Roboto, sans-serif;
+    box-sizing: border-box;
+}
+
+.search {
+    margin-top: 50px;
+}
+
+.search .input-group {
+    padding: 0;
+}
+
+.search input[type="button"] {
+    background-color: #17A589;
+    border-color: #17A589;
+    color: #FFF;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.search input[type="button"]:hover {
+    background-color: #117864; 
+}
+  
+.filter button {
+    color: #283747;
+    position: relative;
+    top: 5px;
+}
+
+.filter .dropdown-item {
+    font-size: 13px;
+    color: #003E4C; 
+}
+
+#disorders {
+	font-size: 13px;
+    color: #283747;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td {
+   background-color: #F8F9F9;
+}
+
+.table-striped>tbody>tr>td:nth-child(3), .table-striped>tbody>tr>td:nth-child(4){
+    text-align:justify;
+}
+ 
+ #disorders th {
+	color: #FF6666; 
+}
+ 
+#disorders th:nth-child(1){
+    width: 18%;
+}
+
+#disorders th:nth-child(2){
+    width: 18%;
+}
+
+#disorders th:nth-child(3){
+    width: 30%;
+    text-align:justify;
+}
+
+#disorders th:nth-child(4){
+    width: 30%;
+}
+
+#disorders th:nth-child(5){
+    width: 4%;
+}
+
+#disorders .name{
+    font-size: 12px;
+    font-weight: 700;
+    color: inherit;
+    transition: 0.5s;
+}
+
+#disorders .name:hover {
+    color: #17A589;
+    cursor: pointer;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    color:#FDFEFE;
+    z-index: 1000;
+    min-height: 70px;
+    overflow: hidden;
+    background-color: #1E404E;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+header>nav>button>span{
+    color: #FDFEFE;
+    font-size: 25px;
+}
+
+header .navbar ul li a{
+    font-weight: 400;
+    font-size: 13px;
+    font-family: Roboto;
+    line-height: 14px;
+    letter-spacing: 2px;
+    color: #FDFEFE;
+    text-transform: uppercase;
+}
+
+header .navbar ul li a:hover{
+    color:#10B8A2;
+}
+
+header .navbar-brand{
+    color: #FDFEFE;
+}
